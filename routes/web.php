@@ -45,3 +45,9 @@ Route::get('detail/{id}-{alias}/{page}',function($ms,$alias,$page){
 Route::get('type/{page?}',function($page=1){
     echo $page;
 });//->where('page','[0-9]+');
+
+// php artisan make:controller PageController
+Route::get('demo-ctrl','PageController@getHomePage');
+
+
+Route::get('demo-ctrl2/{product}','PageController@getHomePage3');
