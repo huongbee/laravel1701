@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        
+        //View::share(['menu'=>$menu]);
+        View::composer(['user.layout','home'],function($view){
+
+            $menu = [
+                'Loai 1',
+                'Loai 2'            
+            ];
+            $view->with('menu',$menu);
+        });
     }
 
     /**
