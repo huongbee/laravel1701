@@ -22,7 +22,10 @@
 
     <form action="{{route('post-contact')}}" method="post">
         @csrf()
-        <input type="text" name="fullname" placeholder="Enter Your name">
+        {{csrf_field()}}
+        <input type="hidden" name="_token" value="{{csrf_token()}}">
+        <input type="text" name="fullname" placeholder="Enter Your name" 
+        value="{{old('fullname')}}">
         @if($errors->has('fullname'))
             <ul>
             @foreach($errors->get('fullname') as $err)
@@ -31,7 +34,7 @@
             </ul>
         @endif
         <br>
-        <input type="text" name="title" placeholder="Enter Title">
+        <input value="{{old('title')}}" type="text" name="title" placeholder="Enter Title">
         @if($errors->has('title'))
             <ul>
             @foreach($errors->get('title') as $err)
@@ -40,7 +43,7 @@
             </ul>
         @endif
         <br>
-        <input type="email" name="email" placeholder="Enter Email">
+        <input type="email" value="{{old('email')}}" name="email" placeholder="Enter Email">
         <br>
         <input type="password" name="password" placeholder="Enter Pw">
         <br>

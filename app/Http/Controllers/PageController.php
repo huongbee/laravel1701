@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
+use Redirect;
 
 class PageController extends Controller
 {
@@ -50,7 +52,21 @@ class PageController extends Controller
     }
 
     function postContact(Request $request){
-        $request->validate([
+        // $request->validate([
+        //     'fullname'=>'required| min:10|max: 50',
+        //     'title'=>'required| min:10|max: 50',
+        //     'message'=>'required',
+        //     'password'=>'required|min:6',
+        //     're_password'=>'required|min:6|same:password',            
+        //     'email'=>'required|email'
+        // ],[
+        //    'fullname.required' => 'Vui lòng nhập fullname',
+        //    'fullname.min' => "Fullname ít nhất :min kí tự",
+        //    'fullname.max' => "Fullname ko quá :max kí tự",
+        //    're_password.same' => "Pw không giống nhau",
+        // ]); 
+
+        $validator = Validator::make($request->all(), [
             'fullname'=>'required| min:10|max: 50',
             'title'=>'required| min:10|max: 50',
             'message'=>'required',
@@ -58,11 +74,17 @@ class PageController extends Controller
             're_password'=>'required|min:6|same:password',            
             'email'=>'required|email'
         ],[
-           'fullname.required' => 'Vui lòng nhập fullname',
+            'fullname.required' => 'Vui lòng nhập fullname',
            'fullname.min' => "Fullname ít nhất :min kí tự",
            'fullname.max' => "Fullname ko quá :max kí tự",
            're_password.same' => "Pw không giống nhau",
-        ]); 
+        ]);
+
+        if ($validator->fails()) {
+            return Redirect::route('get-contact')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
         echo $request->fullname;
         echo $request->input('tilte');
