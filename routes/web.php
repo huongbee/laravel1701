@@ -56,3 +56,7 @@ Route::get('home','PageController@callView');
 
 Route::get('type', 'PageController@getTypePage' );
 Route::get('detail', 'PageController@getDetailPage' );
+
+
+Route::get('contact','PageController@getContact')->name('get-contact');
+Route::post('contact','PageController@postContact')->name('post-contact');

@@ -45,4 +45,31 @@ class PageController extends Controller
         return view('user.detail');
     }
     
+    function getContact(){
+        return view('contact');
+    }
+
+    function postContact(Request $request){
+        $request->validate([
+            'fullname'=>'required| min:10|max: 50',
+            'title'=>'required| min:10|max: 50',
+            'message'=>'required',
+            'password'=>'required|min:6',
+            're_password'=>'required|min:6|same:password',            
+            'email'=>'required|email'
+        ],[
+           'fullname.required' => 'Vui lòng nhập fullname',
+           'fullname.min' => "Fullname ít nhất :min kí tự",
+           'fullname.max' => "Fullname ko quá :max kí tự",
+           're_password.same' => "Pw không giống nhau",
+        ]); 
+
+        echo $request->fullname;
+        echo $request->input('tilte');
+        dd($request->input());
+
+        //fullname. title: require, min:10, max: 50
+        //email: require, valid,
+        //messages: require
+    }
 }
