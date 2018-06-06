@@ -60,3 +60,7 @@ Route::get('detail', 'PageController@getDetailPage' );
 
 Route::get('contact','PageController@getContact')->name('get-contact');
 Route::post('contact','PageController@postContact')->name('post-contact');
+
+
+Route::get('upload','PageController@getForm')->name('upload');
+Route::post('upload','PageController@postForm')->name('upload');

@@ -94,4 +94,30 @@ class PageController extends Controller
         //email: require, valid,
         //messages: require
     }
+
+    function getForm(){
+        return view('upload');
+    }
+
+    
+
+    function postForm(Request $req){
+        if($req->hasFile('image')){
+            $file = $req->file('image');
+            //echo $file->getClientSize();
+            // echo $file->getClientMimeType();
+            // echo $file->getClientOriginalExtension();
+            // echo $file->getClientOriginalName();
+            //move_uploaded_file();
+            $file->move('files',$file->getClientOriginalName());
+            //echo "success";
+            //check file size
+            //file type
+            //rename
+            //dd($file);
+        }
+        else{
+            return redirect()->back()->with('error','Vui long chon file');
+        }
+    }
 }
