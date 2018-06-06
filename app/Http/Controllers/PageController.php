@@ -104,20 +104,73 @@ class PageController extends Controller
     function postForm(Request $req){
         if($req->hasFile('image')){
             $file = $req->file('image');
-            //echo $file->getClientSize();
+            //dd($file);
+            // echo $file->getClientSize();
             // echo $file->getClientMimeType();
             // echo $file->getClientOriginalExtension();
             // echo $file->getClientOriginalName();
             //move_uploaded_file();
-            $file->move('files',$file->getClientOriginalName());
+            //$file->move('files',$file->getClientOriginalName());
             //echo "success";
+            $size =  $file->getClientSize();
+
+            $arrExt = ['png','jpg','gif'];
+            $ext = $file->getClientOriginalExtension(); //png
+
+            if($size < 1024*1024){
+                if(in_array($ext,$arrExt)){
+                    $name = $file->getClientOriginalName();
+                    $newName = date('Y-m-d-H-i-s-',time()).$name;
+                    $file->move('files',$newName);
+
+                    echo "success";
+                }
+                else{
+                    return redirect()->back()->with('error','File not allow!');
+                }
+                // $flag = false;
+                // foreach($arrExt as $e){
+                //     if($e == $ext){
+                //         $flag = true;
+                //     }
+                // }
+                // if($flag){
+                //     //2018-6-6-18-47-34-a.png
+                //     $name = $file->getClientOriginalName();
+                //     $newName = date('Y-m-d-H-i-s-',time()).$name;
+                //     $file->move('files',$newName);
+
+                //     echo "success";
+                // }
+                // else{
+                //     return redirect()->back()->with('error','File not allow!');
+                // }
+            }
+            else{
+                return redirect()->back()->with('error','File too large!');
+            }
             //check file size
             //file type
             //rename
+
             //dd($file);
         }
         else{
             return redirect()->back()->with('error','Vui long chon file');
         }
+    }
+
+    function postUploadMultilpe(Request $req){
+        if($req->hasFile('image')){
+            $file  = $req->file('image');
+            foreach($file as $f){
+                $name = $f->getClientOriginalName();
+                $f->move('files',$name);
+            }
+        }
+        else{
+            return redirect()->back()->with('error','Vui long chon file');
+        }
+        
     }
 }

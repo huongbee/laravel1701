@@ -64,3 +64,4 @@ Route::post('contact','PageController@postContact')->name('post-contact');
 
 Route::get('upload','PageController@getForm')->name('upload');
 Route::post('upload','PageController@postForm')->name('upload');
+Route::post('upload-multiple','PageController@postUploadMultilpe')->name('upload-multiple');

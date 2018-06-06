@@ -10,9 +10,9 @@
     @if(Session::has('error'))
         <div>{{Session::get('error')}}</div>
     @endif
-    <form action="{{route('upload')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('upload-multiple')}}" method="POST" enctype="multipart/form-data">
         @csrf
-        <input type="file" name="image">
+        <input type="file" name="image[]" multiple>
         <button type="submit">Upload</button>
     </form>
 </body>
