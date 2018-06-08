@@ -99,7 +99,6 @@ Route::get('create-table-bills',function(){
 
         $t->foreign('id_user')->references('id')->on('users');
 
-        
     });
     echo "Created!";
 });
