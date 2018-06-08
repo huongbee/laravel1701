@@ -65,3 +65,41 @@ Route::post('contact','PageController@postContact')->name('post-contact');
 Route::get('upload','PageController@getForm')->name('upload');
 Route::post('upload','PageController@postForm')->name('upload');
 Route::post('upload-multiple','PageController@postUploadMultilpe')->name('upload-multiple');
+
+Route::get('create-table-customers',function(){
+
+    Schema::create('customers',function($t){
+        $t->increments('id');  //PK, AI
+        $t->string('email',100)->unique();
+        $t->string('name',100)->default('Ti');
+        $t->date('birthdate');
+        $t->timestamps();
+    });
+    echo "Created!";
+});
+Route::get('modify-table-customers',function(){
+
+    // Schema::table('customers',function($t){
+    //     $t->string('password',100)->change();
+    // });
+
+    //Schema::rename('customers', 'khachhang');
+    Schema::dropIfExists('khachhang');
+    echo "Success!";
+});
+
+Route::get('create-table-bills',function(){
+
+    Schema::create('bills',function($t){
+        $t->increments('id');  //PK, AI
+        $t->integer('id_user')->unsigned(); //
+        $t->float('price', 8, 2);
+        $t->date('date_order');
+        $t->timestamps();
+
+        $t->foreign('id_user')->references('id')->on('users');
+
+        
+    });
+    echo "Created!";
+});
