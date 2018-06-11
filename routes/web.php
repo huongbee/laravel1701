@@ -102,3 +102,5 @@ Route::get('create-table-bills',function(){
     });
     echo "Created!";
 });
+
+Route::get('query-builder',"QueryBuilderController@index");
