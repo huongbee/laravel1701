@@ -47,7 +47,7 @@ LIÊN KẾT BẢNG
 
 2.2. Truy vấn có nhóm và thống kê dữ liệu. Yêu cầu: Thực hiện các truy vấn sau
 
-1. Thống kê tổng số sản phẩm theo Loại, gồm các thông tin: Tên Loại sản phẩm, tổng số sản phẩm, có sắp tăng theo tổng số sản phẩm, chỉ liệt kê những loại có tổng số SP lớn hơn hoặc bằng10 và tên loại là Phụ kiện và iMac
+1. Thống kê tổng số sản phẩm theo Loại, gồm các thông tin: Tên Loại sản phẩm, tổng số sản phẩm, có sắp tăng theo tổng số sản phẩm, chỉ liệt kê những loại có tổng số SP lớn hơn hoặc bằng 10 và tên loại là Phụ kiện và iMac
 
 2. Cho biết đơn giá trung bình của sản phẩm theo từng Loại sản phẩm.
 
