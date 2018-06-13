@@ -84,11 +84,13 @@ class QueryBuilderController extends Controller
         //             ->orderBy('tongSP', 'ASC')
         //             ->get();
     
-        $products = DB::table('products')
-                    ->selectRaw('categories.name as TenLoai, avg(products.price) as DGTB, min(products.price) as minPrice, max(products.price) as maxPrice')
-                    ->join('categories','categories.id','=','products.id_type')
-                    ->groupBy('categories.name')
-                    ->get();
+        // $products = DB::table('products')
+        //             ->selectRaw('categories.name as TenLoai, avg(products.price) as DGTB, min(products.price) as minPrice, max(products.price) as maxPrice')
+        //             ->join('categories','categories.id','=','products.id_type')
+        //             ->groupBy('categories.name')
+        //             ->get();
+
+        $products = DB::table('products')->get();
         dd($products);
     }
 }

@@ -104,3 +104,4 @@ Route::get('create-table-bills',function(){
 });
 
 Route::get('query-builder',"QueryBuilderController@index");
+Route::get('eloquent-model',"EloquentController@index");
