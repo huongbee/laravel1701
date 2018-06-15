@@ -10,7 +10,16 @@ class Products extends Model
     public $timestamps = false;
     const UPDATED_AT = 'update_at';
 
-    function pageUrl(){
-        return $this->belongsTo('App\Products','id_url','id');
+    function pageUrlProduct(){
+        return $this->belongsTo('App\PageUrl','id_url','id');
     }
+
+    function categories(){
+        return $this->belongsTo('App\Categories','id_type','id');
+    }
+
+    function bill(){
+        return $this->belongsToMany('App\Bills','bill_detail','id_product','id_bill');
+    }
+
 }
